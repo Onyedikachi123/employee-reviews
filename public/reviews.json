@@ -1,0 +1,405 @@
+{
+    "reviews": [
+      {
+        "id": "1",
+        "title": "Exceptional Work Environment at Google",
+        "text": "Google is a company that truly values its employees. The benefits are unmatched, from generous parental leave policies to free meals. The work-life balance is commendable, and the projects are both innovative and impactful. Management is supportive, and the culture encourages creativity. Highly recommended for anyone looking for a fulfilling career.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Google"
+      },
+      {
+        "id": "2",
+        "title": "Intense but Rewarding Work at Amazon",
+        "text": "Working at Amazon is not for the faint-hearted. The pace is fast, and the expectations are high. However, the opportunities for growth are significant, and the compensation is competitive. Be prepared for long hours and a high-pressure environment, but the experience can be incredibly rewarding for those who thrive under pressure.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Amazon"
+      },
+      {
+        "id": "3",
+        "title": "Incredible Growth Opportunities at Microsoft",
+        "text": "Microsoft provides employees with incredible growth opportunities, from internal training programs to cross-functional projects. The leadership team is visionary, and the company invests heavily in innovation. The work culture is inclusive, and the benefits package is one of the best in the industry. A fantastic place to work for those seeking stability and growth.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Microsoft"
+      },
+      {
+        "id": "4",
+        "title": "Stifled Innovation at IBM",
+        "text": "IBM has a storied history and some brilliant minds, but the bureaucracy can stifle innovation. Legacy systems and outdated processes make it difficult to implement new ideas. While the work-life balance is decent, the lack of agility in decision-making can be frustrating for those who want to drive change.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "IBM"
+      },
+      {
+        "id": "5",
+        "title": "Dynamic and Inspiring Work at Apple",
+        "text": "Apple offers a dynamic work environment with the chance to contribute to world-class products. The culture is demanding but incredibly inspiring. Employees are given access to cutting-edge technology and are part of a team that values design and innovation. The hours can be long, but the end results make it worthwhile.",
+        "rating": 4,
+        "sentiment": "Positive",
+        "companyName": "Apple"
+      },
+      {
+        "id": "6",
+        "title": "Overwhelming Workload at Tesla",
+        "text": "Tesla is a fast-paced environment that demands a lot from its employees. While the projects are exciting and the mission is noble, the workload can be overwhelming. Burnout is a common issue, and the lack of work-life balance can be a dealbreaker for many. A challenging place to work but rewarding for the right personality.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Tesla"
+      },
+      {
+        "id": "7",
+        "title": "Supportive Environment at Facebook",
+        "text": "Meta (formerly Facebook) offers a supportive environment where employees are encouraged to take risks and innovate. The perks are outstanding, including wellness benefits and career development opportunities. The management is approachable, and the collaborative culture makes it a great place to work.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Meta"
+      },
+      {
+        "id": "8",
+        "title": "Challenging Work-Life Balance at JP Morgan",
+        "text": "JP Morgan is a leader in the financial industry, and the experience here is unparalleled. However, the work-life balance can be challenging, especially during busy seasons. Compensation is fair, and the learning opportunities are excellent, but the long hours may not suit everyone.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "JP Morgan"
+      },
+      {
+        "id": "9",
+        "title": "Fantastic Team Culture at Netflix",
+        "text": "Netflix has a fantastic team culture that emphasizes freedom and responsibility. Employees are treated with respect and given the autonomy to make decisions. The pace is fast, and expectations are high, but the rewards are equally significant. A great place for those who value innovation and teamwork.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Netflix"
+      },
+      {
+        "id": "10",
+        "title": "Navigating Change at Twitter",
+        "text": "Twitter is a company in transition, and while the potential is immense, the frequent changes can be unsettling. The team is talented, and the projects are meaningful, but the instability can be a challenge for some employees. Still, a unique place to grow and contribute to impactful work.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Twitter"
+      },
+      {
+        "id": "11",
+        "title": "Collaborative Environment at Meta",
+        "text": "The culture encourages collaboration and learning, which makes it a great place to work.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Meta"
+      },
+      {
+        "id": "12",
+        "title": "Challenging but Rewarding Work at Nvidia",
+        "text": "Fast-paced environment with a focus on innovation, but deadlines can be demanding.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Nvidia"
+      },
+      {
+        "id": "13",
+        "title": "Strong Leadership at Adobe",
+        "text": "The leadership is transparent and inspiring, making Adobe a fantastic place to grow your career.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Adobe"
+      },
+      {
+        "id": "14",
+        "title": "Overtime Issues at Oracle",
+        "text": "The compensation is good, but the frequent overtime takes a toll on personal life.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Oracle"
+      },
+      {
+        "id": "15",
+        "title": "Diversity and Inclusion at Salesforce",
+        "text": "Salesforce has a strong focus on diversity and inclusion, which creates a welcoming workplace.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Salesforce"
+      },
+      {
+        "id": "16",
+        "title": "Micromanagement at Intel",
+        "text": "The work is interesting, but the micromanagement can make it difficult to feel trusted.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Intel"
+      },
+      {
+        "id": "17",
+        "title": "Empowering Work at Netflix",
+        "text": "Employees are given a lot of autonomy, which helps in achieving personal and professional growth.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Netflix"
+      },
+      {
+        "id": "18",
+        "title": "Stressful Environment at Goldman Sachs",
+        "text": "Great learning opportunities, but the high-pressure environment is not for everyone.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Goldman Sachs"
+      },
+      {
+        "id": "19",
+        "title": "Great Work-Life Balance at Dropbox",
+        "text": "Dropbox offers a wonderful balance between work and life, along with great perks.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Dropbox"
+      },
+      {
+        "id": "20",
+        "title": "Chaotic Management at Twitter",
+        "text": "The projects are exciting, but the lack of proper management makes things chaotic.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Twitter"
+      },
+      {
+        "id": "21",
+        "title": "Empowering Culture at Amazon",
+        "text": "Amazon fosters a highly empowering culture where employees are encouraged to take ownership of their projects. The opportunities for advancement are great, but the workload is intense. It's a place where you can truly grow, but be prepared for a fast-paced environment.",
+        "rating": 4,
+        "sentiment": "Positive",
+        "companyName": "Amazon"
+      },
+      {
+        "id": "22",
+        "title": "Unstable Leadership at Twitter",
+        "text": "Twitter has been through many leadership changes, and it affects the overall morale of employees. Despite the fast-paced work and innovative projects, the constant changes make it hard to find stability.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Twitter"
+      },
+      {
+        "id": "23",
+        "title": "Great Benefits at Google",
+        "text": "Google offers some of the best benefits in the industry, from healthcare to generous time off. The work environment is very inclusive and promotes a healthy work-life balance.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Google"
+      },
+      {
+        "id": "24",
+        "title": "Toxic Work Culture at Uber",
+        "text": "Uber has a competitive work culture that can often feel toxic. While the pay is good, the environment can be draining. Work-life balance is difficult to maintain, and it can be hard to deal with the constant pressure.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Uber"
+      },
+      {
+        "id": "25",
+        "title": "Challenging Yet Rewarding Work at Tesla",
+        "text": "Tesla's work environment is intense, with demanding deadlines and high expectations. However, the satisfaction of contributing to innovative projects makes it all worthwhile for those willing to put in the effort.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Tesla"
+      },
+      {
+        "id": "26",
+        "title": "Innovative Projects at Microsoft",
+        "text": "Microsoft encourages its employees to work on cutting-edge projects that truly make an impact. The work culture is collaborative and empowering, making it a great place to develop new skills.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Microsoft"
+      },
+      {
+        "id": "27",
+        "title": "Fast-Paced Work at Apple",
+        "text": "Apple offers a high-energy environment where the pace is fast and expectations are high. It's a great place to grow, but it can be overwhelming at times.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Apple"
+      },
+      {
+        "id": "28",
+        "title": "Lack of Work-Life Balance at JPMorgan",
+        "text": "JPMorgan offers great opportunities for career growth, but the work-life balance leaves much to be desired. The long hours and high-pressure environment can be exhausting.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "JPMorgan"
+      },
+      {
+        "id": "29",
+        "title": "Amazing Culture at Salesforce",
+        "text": "Salesforce places a huge emphasis on fostering an inclusive and supportive culture. It's a company that genuinely cares about its employees, and it shows in the workplace environment.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Salesforce"
+      },
+      {
+        "id": "30",
+        "title": "Stressful Yet Rewarding at Goldman Sachs",
+        "text": "Goldman Sachs offers great career opportunities, but the stress level can be overwhelming. The fast-paced environment is perfect for those who thrive under pressure but can be difficult for others.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Goldman Sachs"
+      },
+      {
+        "id": "31",
+        "title": "Great Opportunities at Adobe",
+        "text": "Adobe is an excellent company to work for, with great opportunities for advancement and growth. The work culture is collaborative and respectful, and the benefits are top-notch.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Adobe"
+      },
+      {
+        "id": "32",
+        "title": "Micromanagement at Intel",
+        "text": "While Intel has great technology and projects, the micromanagement and lack of autonomy can be frustrating. Employees are not given the freedom to take initiative, which stifles innovation.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Intel"
+      },
+      {
+        "id": "33",
+        "title": "Fun and Dynamic at Netflix",
+        "text": "Netflix offers a fun and dynamic work environment where employees are encouraged to be creative and innovative. The company values freedom and responsibility, making it a fantastic place for personal growth.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Netflix"
+      },
+      {
+        "id": "34",
+        "title": "Challenging Work at Oracle",
+        "text": "Oracle offers great compensation, but the work can be challenging, especially when it comes to long hours. However, for those who enjoy tackling complex problems, it can be a very rewarding experience.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Oracle"
+      },
+      {
+        "id": "35",
+        "title": "Creative Freedom at Google",
+        "text": "Google gives its employees a lot of creative freedom, which leads to a dynamic and innovative work environment. The projects are challenging, but the support and resources available make it easier to succeed.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Google"
+      },
+      {
+        "id": "36",
+        "title": "Lack of Work-Life Balance at Microsoft",
+        "text": "While Microsoft offers fantastic career growth opportunities, the work-life balance can sometimes suffer. Long hours and high expectations make it difficult to maintain a healthy personal life.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Microsoft"
+      },
+      {
+        "id": "37",
+        "title": "Great Culture at Meta",
+        "text": "Meta is known for its supportive and inclusive work culture. Employees are encouraged to innovate and take risks. The benefits are fantastic, making it one of the best tech companies to work for.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Meta"
+      },
+      {
+        "id": "38",
+        "title": "Demanding Work at Apple",
+        "text": "Apple offers great pay and benefits, but the work can be quite demanding. It's an environment where you need to constantly be on your toes, but the challenges can be rewarding for those who thrive in high-pressure situations.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Apple"
+      },
+      {
+        "id": "39",
+        "title": "Work-Life Balance at Dropbox",
+        "text": "Dropbox excels at providing a great work-life balance. The company offers flexibility and support for personal time, which is a huge plus for employees.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Dropbox"
+      },
+      {
+        "id": "40",
+        "title": "Great Compensation at Amazon",
+        "text": "Amazon offers excellent compensation packages, but the demanding work environment can make it difficult to enjoy. Still, it's a great place to grow your career if you can handle the intensity.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Amazon"
+      },
+      {
+        "id": "41",
+        "title": "Tense Atmosphere at Uber",
+        "text": "The atmosphere at Uber can be tense, with constant pressure to meet deadlines. It's a fast-paced company, but that comes at the cost of work-life balance.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Uber"
+      },
+      {
+        "id": "42",
+        "title": "Inspirational Leadership at Salesforce",
+        "text": "Salesforce has a strong leadership team that inspires employees to perform at their best. The company focuses on personal development and offers a variety of resources for growth.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Salesforce"
+      },
+      {
+        "id": "43",
+        "title": "Stressful but Growth-Oriented at Goldman Sachs",
+        "text": "Goldman Sachs offers immense career growth opportunities, but the work environment is very stressful. It's a place for those who thrive under pressure, but not ideal for those who prefer a more relaxed atmosphere.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "Goldman Sachs"
+      },
+      {
+        "id": "44",
+        "title": "Challenging Projects at Oracle",
+        "text": "The projects at Oracle are very challenging, and the company expects high performance from its employees. The work environment can be stressful, but the compensation and benefits are competitive.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Oracle"
+      },
+      {
+        "id": "45",
+        "title": "Respectful Culture at Intel",
+        "text": "Intel offers a respectful and inclusive work culture. The company focuses on diversity and providing opportunities for everyone to grow, although the management style can sometimes be overbearing.",
+        "rating": 4,
+        "sentiment": "Positive",
+        "companyName": "Intel"
+      },
+      {
+        "id": "46",
+        "title": "Fast-Paced at Meta",
+        "text": "Meta offers a fast-paced work environment where you need to keep up with the constant changes. It's challenging but rewarding for those who enjoy innovation and risk-taking.",
+        "rating": 4,
+        "sentiment": "Mixed",
+        "companyName": "Meta"
+      },
+      {
+        "id": "47",
+        "title": "Work-Life Balance at Dropbox",
+        "text": "Dropbox places a high priority on work-life balance and offers flexibility that many other tech companies lack. It’s a great place for people looking for a job that supports their personal life.",
+        "rating": 5,
+        "sentiment": "Positive",
+        "companyName": "Dropbox"
+      },
+      {
+        "id": "48",
+        "title": "Bureaucracy at IBM",
+        "text": "IBM's strong legacy is weighed down by bureaucracy, which can make it difficult to implement new ideas. It's still a stable place to work but lacks the agility of other tech companies.",
+        "rating": 3,
+        "sentiment": "Mixed",
+        "companyName": "IBM"
+      },
+      {
+        "id": "49",
+        "title": "Creative Freedom at Pinterest",
+        "text": "Pinterest offers an environment where creativity thrives. Employees are encouraged to explore new ideas and push boundaries. The work culture is inclusive and supportive, but the pace can be challenging at times.",
+        "rating": 4,
+        "sentiment": "Positive",
+        "companyName": "Pinterest"
+      },
+      {
+        "id": "50",
+        "title": "Lack of Support at Snapchat",
+        "text": "While Snapchat offers innovative products and a fun work culture, there is a lack of support from management. Employees are expected to work independently without much guidance, which can feel isolating.",
+        "rating": 2,
+        "sentiment": "Negative",
+        "companyName": "Snapchat"
+      }
+    ]
+  }
+  
