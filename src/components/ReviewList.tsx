@@ -3,13 +3,13 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-interface Review {
-  id: string;
-  title: string;
-  text: string;
-  rating: number;
-  sentiment: "Positive" | "Negative" | "Mixed";
-}
+// interface Review {
+//   id: string;
+//   title: string;
+//   text: string;
+//   rating: number;
+//   sentiment: "Positive" | "Negative" | "Mixed";
+// }
 
 interface SentimentSummary {
   count: number;

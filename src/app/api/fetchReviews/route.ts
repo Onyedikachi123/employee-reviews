@@ -84,22 +84,22 @@ const sentimentAnalyzer = async (text: string): Promise<"Positive" | "Negative" 
 };
 
 // Sentiment percentages calculation
-const calculateSentimentPercentages = (reviews: Review[]) => {
-    const total = reviews.length;
-    const counts = reviews.reduce(
-        (acc, review) => {
-            acc[review.sentiment]++;
-            return acc;
-        },
-        { Positive: 0, Negative: 0, Mixed: 0 }
-    );
+// const calculateSentimentPercentages = (reviews: Review[]) => {
+//     const total = reviews.length;
+//     const counts = reviews.reduce(
+//         (acc, review) => {
+//             acc[review.sentiment]++;
+//             return acc;
+//         },
+//         { Positive: 0, Negative: 0, Mixed: 0 }
+//     );
 
-    return {
-        positivePercentage: ((counts.Positive / total) * 100).toFixed(2),
-        negativePercentage: ((counts.Negative / total) * 100).toFixed(2),
-        mixedPercentage: ((counts.Mixed / total) * 100).toFixed(2),
-    };
-};
+//     return {
+//         positivePercentage: ((counts.Positive / total) * 100).toFixed(2),
+//         negativePercentage: ((counts.Negative / total) * 100).toFixed(2),
+//         mixedPercentage: ((counts.Mixed / total) * 100).toFixed(2),
+//     };
+// };
 
 
 // Summarize reviews by sentiment with percentages and review texts
