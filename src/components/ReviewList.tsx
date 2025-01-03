@@ -11,16 +11,20 @@ interface Review {
   sentiment: "Positive" | "Negative" | "Mixed";
 }
 
-interface Analysis {
-  positivePercentage: string;
-  negativePercentage: string;
-  mixedPercentage: string;
+interface SentimentSummary {
+  count: number;
+  averageRating: string;
+  percentage: string;
+  reviews: string[];
 }
 
 const Reviews: React.FC = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [analysis, setAnalysis] = useState<Analysis | null>(null);
-  const [selectedTab, setSelectedTab] = useState<"positive" | "negative" | "mixed">("positive");
+  const [sentimentSummary, setSentimentSummary] = useState<{
+    Positive: SentimentSummary;
+    Negative: SentimentSummary;
+    Mixed: SentimentSummary;
+  } | null>(null);
+  const [selectedTab, setSelectedTab] = useState<"Positive" | "Negative" | "Mixed">("Positive");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,8 +40,7 @@ const Reviews: React.FC = () => {
           const res = await fetch(`/api/fetchReviews?companyName=${encodeURIComponent(companyName)}`);
           if (!res.ok) throw new Error("Failed to fetch reviews");
           const data = await res.json();
-          setReviews(data.reviews);
-          setAnalysis(data.analysis);
+          setSentimentSummary(data.sentimentSummary);
         } catch (err: unknown) {
           if (err instanceof Error) {
             setError(err.message);
@@ -53,67 +56,42 @@ const Reviews: React.FC = () => {
     }
   }, [companyName]);
 
-  const filteredReviews = reviews.filter((review) => review.sentiment.toLowerCase() === selectedTab);
-
   if (loading) return <p className="text-center">Loading reviews...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
+
+  if (!sentimentSummary) return <p className="text-center">No reviews found.</p>;
+
+  const summary = sentimentSummary[selectedTab];
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Company Reviews for {companyName}</h2>
 
-      {analysis && (
-        <div className="mb-6">
-          <p>👍 Positive: {analysis.positivePercentage}%</p>
-          <p>👎 Negative: {analysis.negativePercentage}%</p>
-          <p>🤝 Mixed: {analysis.mixedPercentage}%</p>
-        </div>
-      )}
-
       <div className="flex gap-4 mb-4">
-        <button
-          onClick={() => setSelectedTab("positive")}
-          className={selectedTab === "positive" ? "text-blue-500" : ""}
-        >
-          Positive
-        </button>
-        <button
-          onClick={() => setSelectedTab("negative")}
-          className={selectedTab === "negative" ? "text-red-500" : ""}
-        >
-          Negative
-        </button>
-        <button
-          onClick={() => setSelectedTab("mixed")}
-          className={selectedTab === "mixed" ? "text-yellow-500" : ""}
-        >
-          Mixed
-        </button>
+        {["Positive", "Negative", "Mixed"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setSelectedTab(tab as "Positive" | "Negative" | "Mixed")}
+            className={selectedTab === tab ? "text-blue-500" : ""}
+          >
+            {tab} ({sentimentSummary[tab as "Positive" | "Negative" | "Mixed"].count})
+          </button>
+        ))}
       </div>
 
-      <div className="grid gap-4">
-        {filteredReviews.length > 0 ? (
-          filteredReviews.map((review) => (
-            <div key={review.id} className="p-4 border rounded shadow">
-              <h3 className="font-bold">{review.title}</h3>
-              <p>{review.text}</p>
-              <p>⭐ Rating: {review.rating}</p>
-              <p
-                className={`font-semibold ${
-                  review.sentiment === "Positive"
-                    ? "text-green-500"
-                    : review.sentiment === "Negative"
-                    ? "text-red-500"
-                    : "text-yellow-500"
-                }`}
-              >
-                Sentiment: {review.sentiment}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p>No reviews in this category.</p>
-        )}
+      <div className="p-4 border rounded shadow">
+        <h3 className="font-bold">{selectedTab} Reviews</h3>
+        <p>Total Count: {summary.count}</p>
+        <p>Average Rating: ⭐ {summary.averageRating}</p>
+        <p>Percentage: {summary.percentage}%</p>
+        <div className="mt-4">
+          <h4 className="font-semibold">Review Texts:</h4>
+          <ul className="list-disc pl-5">
+            {summary.reviews.map((text, index) => (
+              <li key={index}>{text}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

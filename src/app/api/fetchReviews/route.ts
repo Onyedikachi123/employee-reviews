@@ -101,12 +101,51 @@ const calculateSentimentPercentages = (reviews: Review[]) => {
     };
 };
 
+
+// Summarize reviews by sentiment with percentages and review texts
+const summarizeReviewsBySentiment = (reviews: Review[]) => {
+    const totalReviews = reviews.length;
+    
+    const sentimentGroups = reviews.reduce(
+        (acc, review) => {
+            acc[review.sentiment].count += 1;
+            acc[review.sentiment].totalRating += review.rating;
+            acc[review.sentiment].reviews.push(review.text);
+            return acc;
+        },
+        {
+            Positive: { count: 0, totalRating: 0, reviews: [] as string[] },
+            Negative: { count: 0, totalRating: 0, reviews: [] as string[] },
+            Mixed: { count: 0, totalRating: 0, reviews: [] as string[] },
+        }
+    );
+
+    return {
+        Positive: {
+            count: sentimentGroups.Positive.count,
+            averageRating: (sentimentGroups.Positive.totalRating / sentimentGroups.Positive.count || 0).toFixed(2),
+            percentage: ((sentimentGroups.Positive.count / totalReviews) * 100).toFixed(2),
+            reviews: sentimentGroups.Positive.reviews,
+        },
+        Negative: {
+            count: sentimentGroups.Negative.count,
+            averageRating: (sentimentGroups.Negative.totalRating / sentimentGroups.Negative.count || 0).toFixed(2),
+            percentage: ((sentimentGroups.Negative.count / totalReviews) * 100).toFixed(2),
+            reviews: sentimentGroups.Negative.reviews,
+        },
+        Mixed: {
+            count: sentimentGroups.Mixed.count,
+            averageRating: (sentimentGroups.Mixed.totalRating / sentimentGroups.Mixed.count || 0).toFixed(2),
+            percentage: ((sentimentGroups.Mixed.count / totalReviews) * 100).toFixed(2),
+            reviews: sentimentGroups.Mixed.reviews,
+        },
+    };
+};
+
 // API route handler
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const companyName = url.searchParams.get("companyName");
-    const page = parseInt(url.searchParams.get("page") || "1");
-    const limit = parseInt(url.searchParams.get("limit") || "10");
 
     const reviews = reviewsData.reviews as Review[];
     let filteredReviews = reviews;
@@ -129,15 +168,14 @@ export async function GET(req: Request) {
         }))
     );
 
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedReviews = updatedReviews.slice(startIndex, endIndex);
-
-    const analysis = calculateSentimentPercentages(updatedReviews);
+    const sentimentSummary = summarizeReviewsBySentiment(updatedReviews);
 
     return NextResponse.json({
-        reviews: paginatedReviews,
-        analysis,
-        pagination: { page, limit, total: updatedReviews.length },
+        sentimentSummary,
+        totalReviews: updatedReviews.length,
     });
 }
+
+
+
+
