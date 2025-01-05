@@ -142,7 +142,8 @@ const summarizeReviewsBySentiment = (reviews: Review[]) => {
     };
 };
 
-// API route handler
+
+// API route handler (Modified)
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const companyName = url.searchParams.get("companyName");
@@ -168,13 +169,31 @@ export async function GET(req: Request) {
         }))
     );
 
-    const sentimentSummary = summarizeReviewsBySentiment(updatedReviews);
+    // Calculate Overall Sentiment and Rating
+    const overallSentiment = updatedReviews.reduce((acc, review) => {
+        if (review.sentiment === "Positive") acc.positiveCount++;
+        else if (review.sentiment === "Negative") acc.negativeCount++;
+        else acc.mixedCount++;
+        acc.totalRating += review.rating;
+        return acc;
+    }, { positiveCount: 0, negativeCount: 0, mixedCount: 0, totalRating: 0 });
+
+    const totalReviews = updatedReviews.length;
+    const averageRating = (overallSentiment.totalRating / totalReviews).toFixed(2);
+
+    const overallSentimentText = overallSentiment.positiveCount > overallSentiment.negativeCount ? "Positive" : "Negative";
 
     return NextResponse.json({
-        sentimentSummary,
-        totalReviews: updatedReviews.length,
+        sentimentSummary: {
+            totalReviews,
+            averageRating,
+            overallSentiment: overallSentimentText,
+            sentiment: overallSentimentText,
+            reviews: updatedReviews.map(review => review.text).join(' '), // Combine reviews into one summary text
+        },
     });
 }
+
 
 
 

@@ -3,28 +3,13 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-// interface Review {
-//   id: string;
-//   title: string;
-//   text: string;
-//   rating: number;
-//   sentiment: "Positive" | "Negative" | "Mixed";
-// }
-
-interface SentimentSummary {
-  count: number;
-  averageRating: string;
-  percentage: string;
-  reviews: string[];
-}
-
 const Reviews: React.FC = () => {
   const [sentimentSummary, setSentimentSummary] = useState<{
-    Positive: SentimentSummary;
-    Negative: SentimentSummary;
-    Mixed: SentimentSummary;
+    totalReviews: number;
+    averageRating: string;
+    overallSentiment: string;
+    reviews: string;
   } | null>(null);
-  const [selectedTab, setSelectedTab] = useState<"Positive" | "Negative" | "Mixed">("Positive");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,36 +46,17 @@ const Reviews: React.FC = () => {
 
   if (!sentimentSummary) return <p className="text-center">No reviews found.</p>;
 
-  const summary = sentimentSummary[selectedTab];
-
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Company Reviews for {companyName}</h2>
 
-      <div className="flex gap-4 mb-4">
-        {["Positive", "Negative", "Mixed"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setSelectedTab(tab as "Positive" | "Negative" | "Mixed")}
-            className={selectedTab === tab ? "text-blue-500" : ""}
-          >
-            {tab} ({sentimentSummary[tab as "Positive" | "Negative" | "Mixed"].count})
-          </button>
-        ))}
-      </div>
-
       <div className="p-4 border rounded shadow">
-        <h3 className="font-bold">{selectedTab} Reviews</h3>
-        <p>Total Count: {summary.count}</p>
-        <p>Average Rating: ⭐ {summary.averageRating}</p>
-        <p>Percentage: {summary.percentage}%</p>
+        <h3 className="font-bold">Overall Sentiment: {sentimentSummary.overallSentiment}</h3>
+        <p>Total Reviews: {sentimentSummary.totalReviews}</p>
+        <p>Average Rating: ⭐ {sentimentSummary.averageRating}</p>
         <div className="mt-4">
-          <h4 className="font-semibold">Review Texts:</h4>
-          <ul className="list-disc pl-5">
-            {summary.reviews.map((text, index) => (
-              <li key={index}>{text}</li>
-            ))}
-          </ul>
+          <h4 className="font-semibold">Reviews Summary:</h4>
+          <p>{sentimentSummary.reviews}</p>
         </div>
       </div>
     </div>
