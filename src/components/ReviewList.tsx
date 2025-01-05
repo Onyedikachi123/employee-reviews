@@ -3,6 +3,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
+// Reviews Component
 const Reviews: React.FC = () => {
   const [sentimentSummary, setSentimentSummary] = useState<{
     totalReviews: number;
@@ -25,7 +26,7 @@ const Reviews: React.FC = () => {
           const res = await fetch(`/api/fetchReviews?companyName=${encodeURIComponent(companyName)}`);
           if (!res.ok) throw new Error("Failed to fetch reviews");
           const data = await res.json();
-          setSentimentSummary(data.sentimentSummary);
+          setSentimentSummary(data.sentimentSummary); // Ensure sentiment summary is set here
         } catch (err: unknown) {
           if (err instanceof Error) {
             setError(err.message);
@@ -66,7 +67,7 @@ const Reviews: React.FC = () => {
 // Suspense Wrapper Component
 const SuspenseWrapper: React.FC = () => {
   return (
-    <Suspense fallback={<p className="text-center">Loading...</p>}>
+    <Suspense fallback={<p className="text-center">Loading reviews...</p>}>
       <Reviews />
     </Suspense>
   );

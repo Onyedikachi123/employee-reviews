@@ -25,7 +25,6 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Sentiment analysis function with retry for "model loading" error
 const sentimentAnalyzer = async (text: string): Promise<"Positive" | "Negative" | "Mixed"> => {
-    // Check cache first
     if (sentimentCache.has(text)) {
         return sentimentCache.get(text)!;
     }
@@ -37,10 +36,8 @@ const sentimentAnalyzer = async (text: string): Promise<"Positive" | "Negative" 
             { headers: { Authorization: `Bearer ${HF_API_KEY}` } }
         );
 
-        // Validate response structure
         if (response.data && Array.isArray(response.data) && response.data[0]?.label) {
             const sentiment = response.data[0].label.toLowerCase();
-
             const mappedSentiment =
                 sentiment === "positive"
                     ? "Positive"
@@ -48,23 +45,20 @@ const sentimentAnalyzer = async (text: string): Promise<"Positive" | "Negative" 
                     ? "Negative"
                     : "Mixed";
 
-            // Cache result
             sentimentCache.set(text, mappedSentiment);
-
             return mappedSentiment;
         } else {
             console.warn("Unexpected response format:", response.data);
-            return "Mixed"; // Default for unexpected responses
+            return "Mixed";
         }
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const errorData = error.response?.data;
 
-            // Check if the model is loading (custom handling added here)
             if (errorData?.error === "Model distilbert/distilbert-base-uncased-finetuned-sst-2-english is currently loading") {
                 console.warn("Model is loading. Retrying...");
-                const estimatedTime = errorData.estimated_time || 10; // Default to 10 seconds if not provided
-                await delay(estimatedTime * 1000); // Wait for the estimated time
+                const estimatedTime = errorData.estimated_time || 10;
+                await delay(estimatedTime * 1000);
                 return sentimentAnalyzer(text); // Retry
             }
 
@@ -83,25 +77,6 @@ const sentimentAnalyzer = async (text: string): Promise<"Positive" | "Negative" 
     }
 };
 
-// Sentiment percentages calculation
-// const calculateSentimentPercentages = (reviews: Review[]) => {
-//     const total = reviews.length;
-//     const counts = reviews.reduce(
-//         (acc, review) => {
-//             acc[review.sentiment]++;
-//             return acc;
-//         },
-//         { Positive: 0, Negative: 0, Mixed: 0 }
-//     );
-
-//     return {
-//         positivePercentage: ((counts.Positive / total) * 100).toFixed(2),
-//         negativePercentage: ((counts.Negative / total) * 100).toFixed(2),
-//         mixedPercentage: ((counts.Mixed / total) * 100).toFixed(2),
-//     };
-// };
-
-
 // Summarize reviews by sentiment with percentages and review texts
 const summarizeReviewsBySentiment = (reviews: Review[]) => {
     const totalReviews = reviews.length;
@@ -117,31 +92,26 @@ const summarizeReviewsBySentiment = (reviews: Review[]) => {
             Positive: { count: 0, totalRating: 0, reviews: [] as string[] },
             Negative: { count: 0, totalRating: 0, reviews: [] as string[] },
             Mixed: { count: 0, totalRating: 0, reviews: [] as string[] },
-        }
+        } as Record<"Positive" | "Negative" | "Mixed", { count: number; totalRating: number; reviews: string[] }>
     );
 
+    const getOverallSentiment = () => {
+        const totalSentiments = sentimentGroups.Positive.count + sentimentGroups.Negative.count + sentimentGroups.Mixed.count;
+        const positivePercentage = (sentimentGroups.Positive.count / totalSentiments) * 100;
+
+        return positivePercentage > 50 ? "Positive" : "Mixed"; // Simplified sentiment logic
+    };
+
     return {
-        Positive: {
-            count: sentimentGroups.Positive.count,
-            averageRating: (sentimentGroups.Positive.totalRating / sentimentGroups.Positive.count || 0).toFixed(2),
-            percentage: ((sentimentGroups.Positive.count / totalReviews) * 100).toFixed(2),
-            reviews: sentimentGroups.Positive.reviews,
-        },
-        Negative: {
-            count: sentimentGroups.Negative.count,
-            averageRating: (sentimentGroups.Negative.totalRating / sentimentGroups.Negative.count || 0).toFixed(2),
-            percentage: ((sentimentGroups.Negative.count / totalReviews) * 100).toFixed(2),
-            reviews: sentimentGroups.Negative.reviews,
-        },
-        Mixed: {
-            count: sentimentGroups.Mixed.count,
-            averageRating: (sentimentGroups.Mixed.totalRating / sentimentGroups.Mixed.count || 0).toFixed(2),
-            percentage: ((sentimentGroups.Mixed.count / totalReviews) * 100).toFixed(2),
-            reviews: sentimentGroups.Mixed.reviews,
-        },
+        totalReviews,
+        averageRating: (
+            (sentimentGroups.Positive.totalRating + sentimentGroups.Negative.totalRating + sentimentGroups.Mixed.totalRating) /
+            totalReviews
+        ).toFixed(2),
+        overallSentiment: getOverallSentiment(),
+        reviews: sentimentGroups.Positive.reviews.concat(sentimentGroups.Negative.reviews, sentimentGroups.Mixed.reviews),
     };
 };
-
 
 // API route handler (Modified)
 export async function GET(req: Request) {
@@ -169,32 +139,10 @@ export async function GET(req: Request) {
         }))
     );
 
-    // Calculate Overall Sentiment and Rating
-    const overallSentiment = updatedReviews.reduce((acc, review) => {
-        if (review.sentiment === "Positive") acc.positiveCount++;
-        else if (review.sentiment === "Negative") acc.negativeCount++;
-        else acc.mixedCount++;
-        acc.totalRating += review.rating;
-        return acc;
-    }, { positiveCount: 0, negativeCount: 0, mixedCount: 0, totalRating: 0 });
-
-    const totalReviews = updatedReviews.length;
-    const averageRating = (overallSentiment.totalRating / totalReviews).toFixed(2);
-
-    const overallSentimentText = overallSentiment.positiveCount > overallSentiment.negativeCount ? "Positive" : "Negative";
+    // Use summarizeReviewsBySentiment to get sentiment summary
+    const sentimentSummary = summarizeReviewsBySentiment(updatedReviews);
 
     return NextResponse.json({
-        sentimentSummary: {
-            totalReviews,
-            averageRating,
-            overallSentiment: overallSentimentText,
-            sentiment: overallSentimentText,
-            reviews: updatedReviews.map(review => review.text).join(' '), // Combine reviews into one summary text
-        },
+        sentimentSummary,
     });
 }
-
-
-
-
-
